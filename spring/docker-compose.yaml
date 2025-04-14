@@ -1,0 +1,16 @@
+version: 'v3'
+services:
+  postgres_security:
+    image: postgres
+    ports:
+      - 5435:5432
+    volumes:
+      - datasec:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hamza
+      POSTGRES_DB: student
+
+volumes:
+  datasec:
+    driver: local
