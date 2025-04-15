@@ -5,3 +5,13 @@ spring:
     user:
       name: hamza
       password: 123
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5435/student
+    username: postgres
+    password: hamza

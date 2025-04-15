@@ -1,4 +1,4 @@
-package security.spring;
+package security.spring.Models;
 
 public class Student {
     public  String firstname;
