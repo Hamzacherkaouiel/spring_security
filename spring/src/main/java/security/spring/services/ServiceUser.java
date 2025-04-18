@@ -16,6 +16,8 @@ public class ServiceUser {
     @Autowired
     Userepo userepo;
     @Autowired
+    TokenService tokenService;
+    @Autowired
     AuthenticationManager authenticationManager;
     private BCryptPasswordEncoder bCrypt=new BCryptPasswordEncoder(12);
 
@@ -29,7 +31,7 @@ public class ServiceUser {
         Authentication authentication=authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(),user.getPassword()));
         if(authentication.isAuthenticated()){
-            return "Succes";
+            return this.tokenService.generateToken(user.getUsername());
         }
         return "fail";
     }

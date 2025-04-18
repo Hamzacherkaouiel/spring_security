@@ -18,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import security.spring.services.MyUserService;
 
 @Configuration
@@ -25,6 +26,8 @@ import security.spring.services.MyUserService;
 public class Configuration_Project {
     @Autowired
     private MyUserService myuserservice;
+    @Autowired
+    public JwtFilter jwtfilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -36,6 +39,7 @@ public class Configuration_Project {
                         .permitAll()
                         .anyRequest().authenticated());
         httpSecurity.httpBasic(Customizer.withDefaults());
+        httpSecurity.addFilterBefore(jwtfilter, UsernamePasswordAuthenticationFilter.class);
         return  httpSecurity.build();
     }
 
